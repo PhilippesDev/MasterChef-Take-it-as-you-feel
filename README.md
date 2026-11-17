@@ -66,7 +66,11 @@ Elle peut aussi être `annulée`, tant qu'un chef ne l'a pas encore prise en cha
 
 ## Partie technique
 
-Cette partie décrit le fonctionnement interne du projet. Les choix d'outils et de configuration seront ajoutés plus tard.
+Cette partie décrit le fonctionnement interne du projet. La configuration détaillée sera ajoutée plus tard.
+
+### Technologies
+
+Le site est développé avec **Laravel** pour la partie serveur (règles métier, base de données, droits d'accès, file d'attente des commandes) et **React** pour l'interface, notamment le configurateur de plat qui doit réagir en direct quand le client change un réglage. Les deux parties communiquent par une API.
 
 ### Organisation générale
 
