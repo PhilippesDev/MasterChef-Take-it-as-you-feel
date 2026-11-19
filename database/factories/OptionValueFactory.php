@@ -1,0 +1,25 @@
+<?php
+
+namespace Database\Factories;
+
+use App\Models\OptionGroup;
+use App\Models\OptionValue;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+/**
+ * @extends Factory<OptionValue>
+ */
+class OptionValueFactory extends Factory
+{
+    /**
+     * @return array<string, mixed>
+     */
+    public function definition(): array
+    {
+        return [
+            'option_group_id' => OptionGroup::factory(),
+            'label' => fake()->unique()->word(),
+            'extra_price' => fake()->randomElement([0, 0, 0.5, 1, 1.5]),
+        ];
+    }
+}

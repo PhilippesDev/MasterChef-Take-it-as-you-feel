@@ -2,12 +2,14 @@
 
 namespace Database\Factories;
 
+use App\Enums\UserRole;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
+ * @extends Factory<User>
  */
 class UserFactory extends Factory
 {
@@ -26,10 +28,34 @@ class UserFactory extends Factory
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
+            'phone' => fake()->numerify('+243 9## ### ###'),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
+            'role' => UserRole::Client,
+            'address' => fake()->streetAddress().', Goma',
             'remember_token' => Str::random(10),
         ];
+    }
+
+    public function admin(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'role' => UserRole::Admin,
+        ]);
+    }
+
+    public function chef(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'role' => UserRole::Chef,
+        ]);
+    }
+
+    public function livreur(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'role' => UserRole::Livreur,
+        ]);
     }
 
     /**
